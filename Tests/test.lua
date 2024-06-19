@@ -107,7 +107,7 @@ CONN_METHODS = { "close", "commit", "execute", "rollback", "setautocommit", }
 CONN_OK = function (obj)
 	return test_object (obj, CONN_METHODS)
 end
-CUR_METHODS = { "close", "fetch", "getcolnames", "getcoltypes", }
+CUR_METHODS = { "close", "fetch", "getcolnames", "getcoltypes", "__close", }
 CUR_OK = function (obj)
 	return test_object (obj, CUR_METHODS)
 end
