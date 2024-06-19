@@ -551,6 +551,12 @@ end
 
 ---------------------------------------------------------------------
 ---------------------------------------------------------------------
+function to_be_closed_support ()
+       assert (loadfile"to_be_closed_support.lua")()
+end
+
+---------------------------------------------------------------------
+---------------------------------------------------------------------
 function drop_table ()
 	assert2 (true, CONN:setautocommit(true), "couldn't enable autocommit")
 	-- Postgres retorns 0, ODBC retorns -1, sqlite returns 1
@@ -678,6 +684,9 @@ if string.find(_VERSION, " 5.0") then
 	end
 else
 	luasql = require ("luasql."..driver)
+        if string.find(_VERSION, " 5.4") then
+                table.insert (tests, 10, { "to-be-closed support", to_be_closed_support })
+        end
 end
 assert (luasql, "Could not load driver: no luasql table.")
 io.write (luasql._VERSION.." "..driver)
